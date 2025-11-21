@@ -119,11 +119,32 @@ class App {
     }
 }
 
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize app
+const initApp = () => {
     const app = new App();
-    app.init();
-});
+    app.init().catch(err => {
+        console.error('❌ Failed to initialize app:', err);
+        // Failsafe: hide loading screen anyway so user isn't stuck
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) loadingScreen.classList.add('hidden');
+    });
+};
+
+// Check if DOM is already ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
+
+// Failsafe: If app hasn't loaded in 3 seconds, force hide loading screen
+setTimeout(() => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+        console.warn('⚠️ App initialization timed out, forcing loading screen hide');
+        loadingScreen.classList.add('hidden');
+    }
+}, 3000);
 
 // Handle cleanup on page unload
 window.addEventListener('beforeunload', () => {
