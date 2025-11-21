@@ -33,6 +33,9 @@ class App {
         // Register routes
         this.registerRoutes();
 
+        // Handle initial route after routes are registered
+        await router.handleRoute();
+
         // Start real-time scoring service
         scoringService.start();
 
