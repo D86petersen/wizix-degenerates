@@ -30,15 +30,6 @@ class App {
         await router.handleRoute();
         console.log('✅ Initial route handled');
 
-        // Hide loading screen immediately after initialization
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-            console.log('✅ Loading screen hidden');
-        } else {
-            console.warn('⚠️ Loading screen element not found');
-        }
-
         // Start real-time scoring service
         scoringService.start();
 
@@ -124,9 +115,6 @@ const initApp = () => {
     const app = new App();
     app.init().catch(err => {
         console.error('❌ Failed to initialize app:', err);
-        // Failsafe: hide loading screen anyway so user isn't stuck
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) loadingScreen.classList.add('hidden');
     });
 };
 
@@ -136,15 +124,6 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
-
-// Failsafe: If app hasn't loaded in 3 seconds, force hide loading screen
-setTimeout(() => {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
-        console.warn('⚠️ App initialization timed out, forcing loading screen hide');
-        loadingScreen.classList.add('hidden');
-    }
-}, 3000);
 
 // Handle cleanup on page unload
 window.addEventListener('beforeunload', () => {
