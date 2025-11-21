@@ -1,4 +1,5 @@
 // Main Application Entry Point
+console.log('🚀 main.js module loading...');
 import { router } from './utils/router.js';
 import { auth } from './auth/auth.js';
 import { scoringService } from './services/scoring.js';

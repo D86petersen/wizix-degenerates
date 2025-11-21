@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wizix Degenerates - The ultimate football office pool with real-time ESPN scores and degenerate vibes">
+  <meta name="description"
+    content="Wizix Degenerates - The ultimate football office pool with real-time ESPN scores and degenerate vibes">
   <meta name="keywords" content="football, office pool, NFL, picks, betting pool, sports">
   <title>Wizix Degenerates | Football Office Pool</title>
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png">
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
   <!-- App Root -->
 
   <!-- App Root -->
-  <div id="app"></div>
+  <!-- App Root -->
+  <div id="app">
+    <div style="color: white; text-align: center; margin-top: 50px; font-family: sans-serif;">
+      <h1>Wizix Degenerates</h1>
+      <p>Loading application...</p>
+    </div>
+  </div>
+
+  <script>
+    console.log('📄 index.html loaded');
+    window.onerror = function (msg, url, line, col, error) {
+      console.error('💥 Global error:', msg, error);
+      document.getElementById('app').innerHTML += '<p style="color:red">Error: ' + msg + '</p>';
+    };
+  </script>
 
   <!-- Main Script -->
   <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>
