@@ -17,14 +17,6 @@ class App {
     async init() {
         console.log('🎲 Initializing Wizix Degenerates...');
 
-        // Hide loading screen after a short delay
-        setTimeout(() => {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.classList.add('hidden');
-            }
-        }, 1000);
-
         // Set up authentication guard
         router.setAuthGuard(async () => {
             return await auth.isAuthenticated();
@@ -32,9 +24,20 @@ class App {
 
         // Register routes
         this.registerRoutes();
+        console.log('✅ Routes registered');
 
         // Handle initial route after routes are registered
         await router.handleRoute();
+        console.log('✅ Initial route handled');
+
+        // Hide loading screen immediately after initialization
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            console.log('✅ Loading screen hidden');
+        } else {
+            console.warn('⚠️ Loading screen element not found');
+        }
 
         // Start real-time scoring service
         scoringService.start();
